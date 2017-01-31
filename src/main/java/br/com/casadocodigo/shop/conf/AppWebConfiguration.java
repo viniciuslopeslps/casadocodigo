@@ -3,6 +3,7 @@
 	import br.com.casadocodigo.shop.controllers.HomeController;
 	import br.com.casadocodigo.shop.daos.ProductDAO;
 	import br.com.casadocodigo.shop.infra.FileSaver;
+	import br.com.casadocodigo.shop.models.ShopCart;
 	import org.springframework.context.MessageSource;
 	import org.springframework.context.annotation.Bean;
 	import org.springframework.context.annotation.ComponentScan;
@@ -20,7 +21,7 @@
 	
 	@EnableWebMvc
 	//pra cada package precisa colocar um novo desse aqui  (usado nas beans)
-	@ComponentScan(basePackageClasses = { HomeController.class, ProductDAO.class, FileSaver.class })
+	@ComponentScan(basePackageClasses = { HomeController.class, ProductDAO.class, FileSaver.class, ShopCart.class })
 	public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	
 		//confiugração para pasta de views
@@ -29,6 +30,8 @@
 			InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 			resolver.setPrefix("/WEB-INF/views/");
 			resolver.setSuffix(".jsp");
+			//setExposeContextBeansAsAttributes
+			resolver.setExposedContextBeanNames("shopCart");
 			return resolver;
 		}
 	

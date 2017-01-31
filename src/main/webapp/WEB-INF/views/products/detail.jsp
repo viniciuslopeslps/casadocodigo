@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +44,11 @@
         <div id="header-content">
             <nav id="main-nav">
                 <ul class="clearfix">
-                    <li><a href="/cart" rel="nofollow">Carrinho</a></li>
+                    <li>
+                        <a href="/cart" rel="nofollow">
+                            Seu carrinho (${shopCart.qtd})
+                        </a>
+                    </li>
                     <li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">
                         Sobre Nós</a></li>
                     <li><a href="/pages/perguntas-frequentes" rel="nofollow">
@@ -122,7 +127,7 @@
                 Número de páginas: <span>${product.pages }</span>
             </p>
             <p></p>
-            <p>Data de publicação: ${product.launchDate }</p>
+            <p>Data de publicação: <fmt:formatDate pattern="dd/MM/yyyy" value="${product.launchDate.time }" /> </p>
             <p>
                 Encontrou um erro? <a href='/submissao-errata' target='_blank'>Submeta
                 uma errata</a>
