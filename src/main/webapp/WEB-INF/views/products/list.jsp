@@ -19,7 +19,7 @@
 
 		<c:forEach items="${products}" var="product">
 			<tr>
-				<td>${product.title}</td>
+				<td><a href="/produtos/detalhe/${product.id}">${product.title}</a></td>
 				<td>${product.description}</td>
 				<td>${product.pages}</td>
 			</tr>
