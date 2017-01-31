@@ -1,11 +1,14 @@
 package br.com.casadocodigo.shop.models;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Component
+@Scope(value = WebApplicationContext.SCOPE_SESSION)
 public class ShopCart {
 
     private Map<CartItem, Integer> items = new LinkedHashMap<CartItem, Integer>();
