@@ -1,5 +1,7 @@
 package br.com.casadocodigo.shop.models;
 
+import java.math.BigDecimal;
+
 public class CartItem {
     private Product product;
     private PriceType priceType;
@@ -9,9 +11,11 @@ public class CartItem {
         this.product = product;
     }
 
+    public BigDecimal getPrice() {
+        return product.priceTo(priceType);
+    }
 
     public Product getProduct() {
-
         return product;
     }
 
@@ -43,5 +47,9 @@ public class CartItem {
         int result = product != null ? product.hashCode() : 0;
         result = 31 * result + (priceType != null ? priceType.hashCode() : 0);
         return result;
+    }
+
+    public BigDecimal getTotal(int qtd) {
+        return this.getPrice().multiply(new BigDecimal(qtd));
     }
 }

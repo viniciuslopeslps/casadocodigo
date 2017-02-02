@@ -1,6 +1,7 @@
 package br.com.casadocodigo.shop.models;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 
@@ -94,5 +95,9 @@ public class Product {
     @Override
     public int hashCode() {
         return id;
+    }
+
+    public BigDecimal priceTo(PriceType type) {
+        return prices.stream().filter(price -> price.getType().equals(type)).findFirst().get().getValue();
     }
 }
