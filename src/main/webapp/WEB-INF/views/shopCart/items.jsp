@@ -60,7 +60,6 @@
 <section class="container middle">
     <h2 id="cart-title">Seu carrinho de compras</h2>
 
-
     <table id="cart-table">
         <colgroup>
             <col class="item-col"/>
@@ -93,9 +92,10 @@
                     </td>
                     <td class="numeric-cell">${shopCart.getTotal(item)}</td>
                     <td class="remove-item">
-                        <form action="" method="post">
-                            <input type="image" src="${contextPath }resources/imagens/excluir.png" alt="Excluir"
-                                   title="Excluir">
+                        <form action="/carrinho/excluir" method="post">
+                            <input type="image" src="${contextPath }resources/imagens/excluir.png" alt="Excluir" title="Excluir">
+                            <input type="hidden" name="productId" value="${item.product.id}">
+                            <input type="hidden" name="priceType" value="${item.priceType}">
                         </form>
                     </td>
                 </tr>
@@ -104,7 +104,9 @@
         <tfoot>
             <tr>
                 <td colspan="3">
-                    <input type="submit" class="checkout" name="checkout" value="Finalizar compra"/>
+                    <form action="/pagamento/finalizar" method="post">
+                        <input type="submit" class="checkout" name="checkout" value="Finalizar compra"/>
+                    </form>
                 </td>
                 <td class="numeric-cell">${shopCart.total}</td>
             </tr>

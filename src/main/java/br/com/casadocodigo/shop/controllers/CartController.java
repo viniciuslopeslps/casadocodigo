@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RequestMapping("/carrinho")
 @Controller
+//cria escopo de request
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 public class CartController {
 
@@ -41,5 +42,11 @@ public class CartController {
     public CartItem createItem(Integer productId, PriceType priceType) {
         Product product = productDAO.find(productId);
         return new CartItem(product, priceType);
+    }
+
+    @RequestMapping("/excluir")
+    public ModelAndView remove(Integer productId, PriceType priceType) {
+        shopCart.remove(productId, priceType);
+        return new ModelAndView("redirect:/carrinho");
     }
 }

@@ -1,6 +1,7 @@
 package br.com.casadocodigo.shop.models;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -11,7 +12,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Component
-@Scope(value = WebApplicationContext.SCOPE_SESSION)
+//cria escopo de sessão
+@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ShopCart implements Serializable {
 
     private Map<CartItem, Integer> items = new LinkedHashMap<CartItem, Integer>();
@@ -49,5 +51,11 @@ public class ShopCart implements Serializable {
 
     public void setItems(Map<CartItem, Integer> items) {
         this.items = items;
+    }
+
+    public void remove(Integer productId, PriceType priceType) {
+        Product product = new Product();
+        product.setId(productId);
+        items.remove(new CartItem(product, priceType));
     }
 }
