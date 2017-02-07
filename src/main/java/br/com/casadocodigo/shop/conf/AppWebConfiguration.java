@@ -4,6 +4,9 @@ import br.com.casadocodigo.shop.controllers.HomeController;
 import br.com.casadocodigo.shop.daos.ProductDAO;
 import br.com.casadocodigo.shop.infra.FileSaver;
 import br.com.casadocodigo.shop.models.ShopCart;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -23,6 +26,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 //pra cada package precisa colocar um novo desse aqui  (usado nas beans)
 @ComponentScan(basePackageClasses = {HomeController.class, ProductDAO.class, FileSaver.class, ShopCart.class})
+@EnableCaching
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
     //confiugração para pasta de views
@@ -71,6 +75,12 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    //habilita o cache para aplicacao
+    @Bean
+    public CacheManager cacheManager(){
+        return new ConcurrentMapCacheManager();
     }
 
 }
