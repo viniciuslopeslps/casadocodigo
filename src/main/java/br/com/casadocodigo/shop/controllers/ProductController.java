@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -44,6 +45,7 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
+    @CacheEvict(value = "homeProducts", allEntries = true)
     public ModelAndView save(MultipartFile summaryFile, @Valid Product product, BindingResult result,
                              RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
