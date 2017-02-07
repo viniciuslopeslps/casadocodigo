@@ -1,9 +1,10 @@
 package br.com.casadocodigo.shop.controllers;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
+import br.com.casadocodigo.shop.daos.ProductDAO;
+import br.com.casadocodigo.shop.infra.FileSaver;
+import br.com.casadocodigo.shop.models.PriceType;
+import br.com.casadocodigo.shop.models.Product;
+import br.com.casadocodigo.shop.validation.ProductValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
@@ -17,10 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.casadocodigo.shop.daos.*;
-import br.com.casadocodigo.shop.infra.*;
-import br.com.casadocodigo.shop.models.*;
-import br.com.casadocodigo.shop.validation.*;
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/produtos")
