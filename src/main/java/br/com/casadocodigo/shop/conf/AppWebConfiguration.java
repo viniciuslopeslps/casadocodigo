@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+//configuração do spring e de injeção de Dependências
 @EnableWebMvc
 //pra cada package precisa colocar um novo desse aqui  (usado nas beans)
 @ComponentScan(basePackageClasses = {HomeController.class, ProductDAO.class, FileSaver.class, ShopCart.class})
