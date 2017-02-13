@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * Classe de configuração do Spring security
@@ -30,7 +31,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/produtos/**").permitAll()
                 .antMatchers("/").permitAll()
                 .antMatchers("/resources/**").permitAll()
-                .anyRequest().authenticated().and().formLogin();
+                .anyRequest().authenticated()
+                .and().formLogin().loginPage("/login").permitAll()
+                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
 
     // configuração para autenticação de usuários com spring security

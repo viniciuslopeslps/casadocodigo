@@ -51,13 +51,14 @@
         <div id="header-content">
             <nav id="main-nav">
                 <ul class="clearfix">
-                    <security:authorize access="hasRole('ROLE_ADMIN')">
-                        <li><a href="/produtos/lista">Lista de Produtos</a></li>
-                        <li><a href="/produtos/form">Cadastro de Produtos</a></li>
-                    </security:authorize>
                     <li><a href="/cart" rel="nofollow">Carrinho</a></li>
                     <li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
                     <li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
+                    <security:authorize access="hasRole('ROLE_ADMIN')">
+                        <li><a href="/produtos/lista">Lista de Produtos</a></li>
+                        <li><a href="/produtos/form">Cadastro de Produtos</a></li>
+                        <li><a href="/logout">Sair</a></li>
+                    </security:authorize>
                 </ul>
             </nav>
         </div>

@@ -6,7 +6,6 @@
 <head>
     <!-- Import da taglib -->
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
     <c:url value="/resources/bootstrap" var="bootstrapPath"/>
     <link rel="stylesheet" href="${bootstrapPath}/css/bootstrap.min.css"/>
