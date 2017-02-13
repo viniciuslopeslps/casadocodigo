@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,8 @@
 <nav class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -28,7 +30,17 @@
                 <li><a href="/produtos/lista">Lista de Produtos</a></li>
                 <li><a href="/produtos/form">Cadastro de Produtos</a></li>
             </ul>
-        </div><!-- /.navbar-collapse -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">
+                        <security:authorize access="isAuthenticated()">
+                            <security:authentication property="principal" var="usuario"/>
+                            Usuário: ${usuario.username}
+                        </security:authorize>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 <div class="container">

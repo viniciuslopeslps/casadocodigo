@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,37 +81,38 @@
         </tr>
         </thead>
         <tbody>
-            <c:forEach items="#{shopCart.items}" var="item">
-                <tr>
-                    <td class="cart-img-col"><img
-                            src="http://cdn.shopify.com/s/files/1/0155/7645/products/css-eficiente-featured_large.png?v=1435245145"
-                            width="71px" height="100px"/></td>
-                    <td class="item-title">${item.product.title}</td>
-                    <td class="numeric-cell">${item.price}</td>
-                    <td class="quantity-input-cell">
-                        <input type="number" min="0" readonly="readonly" id="qtd" name="qtd"
-                               value="${shopCart.getQtd(item)}"/>
-                    </td>
-                    <td class="numeric-cell">${shopCart.getTotal(item)}</td>
-                    <td class="remove-item">
-                        <form action="/carrinho/excluir" method="post">
-                            <input type="image" src="${contextPath }resources/imagens/excluir.png" alt="Excluir" title="Excluir">
-                            <input type="hidden" name="productId" value="${item.product.id}">
-                            <input type="hidden" name="priceType" value="${item.priceType}">
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
+        <c:forEach items="#{shopCart.items}" var="item">
+            <tr>
+                <td class="cart-img-col"><img
+                        src="http://cdn.shopify.com/s/files/1/0155/7645/products/css-eficiente-featured_large.png?v=1435245145"
+                        width="71px" height="100px"/></td>
+                <td class="item-title">${item.product.title}</td>
+                <td class="numeric-cell">${item.price}</td>
+                <td class="quantity-input-cell">
+                    <input type="number" min="0" readonly="readonly" id="qtd" name="qtd"
+                           value="${shopCart.getQtd(item)}"/>
+                </td>
+                <td class="numeric-cell">${shopCart.getTotal(item)}</td>
+                <td class="remove-item">
+                    <form:form servletRelativeAction="/carrinho/excluir" method="post">
+                        <input type="image" src="${contextPath }resources/imagens/excluir.png" alt="Excluir"
+                               title="Excluir">
+                        <input type="hidden" name="productId" value="${item.product.id}">
+                        <input type="hidden" name="priceType" value="${item.priceType}">
+                    </form:form>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
         <tfoot>
-            <tr>
-                <td colspan="3">
-                    <form action="/pagamento/finalizar" method="post">
-                        <input type="submit" class="checkout" name="checkout" value="Finalizar compra"/>
-                    </form>
-                </td>
-                <td class="numeric-cell">${shopCart.total}</td>
-            </tr>
+        <tr>
+            <td colspan="3">
+                <form:form servletRelativeAction="/pagamento/finalizar" method="post">
+                    <input type="submit" class="checkout" name="checkout" value="Finalizar compra"/>
+                </form:form>
+            </td>
+            <td class="numeric-cell">${shopCart.total}</td>
+        </tr>
         </tfoot>
     </table>
 
@@ -181,16 +184,16 @@
             <!-- social-footer -->
             <p class="footer-title">Receba as Novidades e Lançamentos</p>
             <div id="form-newsletter">
-                <form
-                        action=""
-                        method="POST" id="ss-form" class="form-newsletter">
+                <form action="" method="POST" id="ss-form" class="form-newsletter">
                     <ul>
-                        <li><input type="hidden" name="pageNumber" value="0"/><input
-                                type="hidden" name="backupCache" value=""/><input
-                                type="email" name="entry.0.single" value="" class="ss-q-short"
-                                id="entry_0" placeholder="seu@email.com"/></li>
-                        <li><input type="submit" name="submit"
-                                   value="Quero Receber!" id="submit-newsletter"/></li>
+                        <li>
+                            <input type="hidden" name="pageNumber" value="0"/>
+                            <input type="hidden" name="backupCache" value=""/>
+                            <input type="email" name="entry.0.single" value="" class="ss-q-short" id="entry_0"
+                                   placeholder="seu@email.com"/></li>
+                        <li>
+                            <input type="submit" name="submit" value="Quero Receber!" id="submit-newsletter"/>
+                        </li>
                     </ul>
                 </form>
                 <ul>

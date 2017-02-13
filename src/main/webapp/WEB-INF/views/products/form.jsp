@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +38,7 @@
 
     <p>${message}</p>
 
-    <form:form action="/produtos" method="post" commandName="product" enctype="multipart/form-data">
+    <form:form servletRelativeAction="/produtos" method="post" commandName="product" enctype="multipart/form-data">
         <div class="form-group">
             <label>Título</label>
             <form:input type="text" path="title" cssClass="form-control"/>
