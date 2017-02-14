@@ -19,8 +19,9 @@ public class ProductDAO {
         manager.persist(product);
     }
 
+    //join fetch ele carrega o "precos" no momento do select
     public List<Product> list() {
-        return manager.createQuery("select p from Product p").getResultList();
+        return manager.createQuery("select distinct (p) from Product p join fetch p.prices").getResultList();
     }
 
     public Product find(Integer id) {

@@ -52,6 +52,7 @@
             <th>Título</th>
             <th>Descrição</th>
             <th>Páginas</th>
+            <th>Preços</th>
         </tr>
 
         <c:forEach items="${products}" var="product">
@@ -59,6 +60,7 @@
                 <td><a href="/produtos/detalhe/${product.id}">${product.title}</a></td>
                 <td>${product.description}</td>
                 <td>${product.pages}</td>
+                <td>${product.prices}</td>
             </tr>
         </c:forEach>
     </table>
